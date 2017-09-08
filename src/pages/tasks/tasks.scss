@@ -27,5 +27,15 @@ page-tasks {
     button.submit {
         background-color: transparent;
     }
+    button.item-cover {
+        display: none;
+    }
+    .completed {
+        text-decoration: line-through;
+        color: gray;
+    }
+    ion-checkbox {
+        margin: 8px 16px 8px 2px;
+    }
 
 }

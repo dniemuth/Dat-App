@@ -57,6 +57,14 @@ export class TasksPage {
     });
   }
 
+  toggleComplete(task) {
+    console.log(task);
+    this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
+      Completed: !task.Completed
+    });
+    //console.log(task.Completed);
+  }
+
 
 
 }

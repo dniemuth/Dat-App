@@ -27,12 +27,13 @@
 <ion-content padding (click)="addNew = false">
 
   <ion-list>
-    <button ion-item *ngFor="let task of tasks | async" (click)="editTask(task)">
-      {{task.Title}}
-      <div class="item-note" item-right>
-        {{task.DueDate}}
-      </div>
-    </button>
+    <ion-item *ngFor="let task of tasks | async" [ngClass]="{'completed': task.Completed}" >
+      <ion-checkbox mode="ios" [ngModel]="task.Completed" (ionChange)="toggleComplete(task)" ></ion-checkbox>
+        <ion-label (click)="editTask(task)">{{task.Title}}</ion-label>
+        <div class="item-note" item-right (click)="editTask(task)">
+          {{task.DueDate}}
+        </div>
+    </ion-item>
   </ion-list>
 
 </ion-content>
