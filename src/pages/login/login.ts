@@ -30,8 +30,20 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fauth: AngularFireAuth, private fdb: AngularFireDatabase, private keyboard: Keyboard) {
   }
 
+  ionViewWillLoad() {
+    console.log('view is about to load');
+    this.fauth.auth.onAuthStateChanged((user) => {
+      if(user) {
+        console.log(user);
+        this.navCtrl.setRoot(TabsPage);
+      } else {
+        console.log('no user');
+      }
+    })
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad LoginPage');   
   }
 
   doLogin() {

@@ -5,6 +5,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TaskModalPage } from '../task-modal/task-modal';
 
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+
 /**
  * Generated class for the TasksPage page.
  *
@@ -20,25 +23,44 @@ import { TaskModalPage } from '../task-modal/task-modal';
 export class TasksPage {
 
   tasks: FirebaseListObservable<any>;
+  completedTasks: FirebaseListObservable<any>;
   addNew = false;
   taskTitle = '';
+  showCompleted = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TasksPage');
-    this.tasks = this.fdb.list('tasks/' + this.fauth.auth.currentUser.uid);
+
+    //list of in progress tasks
+    this.tasks = this.fdb.list('tasks/' + this.fauth.auth.currentUser.uid, {
+      query: {
+        orderByChild: 'Completed',
+        equalTo: false
+      }
+    }).map(tasks => tasks.sort(this.orderByDueDate)) as FirebaseListObservable<any>;
+    
+    //list of completed tasks
+    this.completedTasks = this.fdb.list('tasks/' + this.fauth.auth.currentUser.uid, {
+      query: {
+        orderByChild: 'Completed',
+        equalTo: true
+      }
+    }).map(tasks => tasks.sort(this.orderByDueDate)) as FirebaseListObservable<any>;
   }
 
   addNewTask() {
-    this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid).once('value').then((snapshot) => {
-      console.log(snapshot.val());
-    });
+    // this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid).once('value').then((snapshot) => {
+    //   console.log(snapshot.val());
+    // });
     if(this.taskTitle) {
       this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid).push({
         Title: this.taskTitle,
-        Completed: false
+        Completed: false,
+        Notes: '',
+        DueDate: ''
       });
       this.addNew = false;
       this.taskTitle = '';
@@ -52,7 +74,9 @@ export class TasksPage {
 
     taskModal.onDidDismiss(data => {
       this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
-        DueDate: data.date
+        DueDate: data.date,
+        Title: data.title,
+        Notes: data.notes
       });
     });
   }
@@ -63,6 +87,25 @@ export class TasksPage {
       Completed: !task.Completed
     });
     //console.log(task.Completed);
+  }
+
+  showCompletedTasks() {
+    console.log('showing completed tasks');
+    this.showCompleted = !this.showCompleted;
+    
+    // this.fdb.database.ref('/tasks/' + this.fauth.auth.currentUser.uid)
+    // .orderByChild('Completed').equalTo(true).once('value').then((snapshot) => {
+    //   this.completedTasks = snapshot.val();
+    //   console.log(snapshot.val());
+    // }); 
+  }
+
+  orderByDueDate(a, b) {
+    if (a.DueDate < b.DueDate)
+      return -1;
+    if (a.DueDate > b.DueDate)
+      return 1;
+    return 0;
   }
 
 

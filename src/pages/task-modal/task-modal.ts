@@ -17,6 +17,7 @@ export class TaskModalPage {
 
   title = this.navParams.get('Title');
   date: Date = this.navParams.get('DueDate') || '';
+  notes = this.navParams.get('Notes') || '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
   }
@@ -26,7 +27,11 @@ export class TaskModalPage {
   }
 
   closeModal() {
-    let obj = {'date': this.date}
+    let obj = {
+      'date': this.date,
+      'title': this.title,
+      'notes': this.notes
+    } 
     this.viewCtrl.dismiss(obj);
   }
 

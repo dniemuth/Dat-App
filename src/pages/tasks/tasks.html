@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>tasks</ion-title>
+    <ion-title>Tasks</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -29,10 +29,27 @@
   <ion-list>
     <ion-item *ngFor="let task of tasks | async" [ngClass]="{'completed': task.Completed}" >
       <ion-checkbox mode="ios" [ngModel]="task.Completed" (ionChange)="toggleComplete(task)" ></ion-checkbox>
-        <ion-label (click)="editTask(task)">{{task.Title}}</ion-label>
-        <div class="item-note" item-right (click)="editTask(task)">
-          {{task.DueDate}}
-        </div>
+      <ion-label (click)="editTask(task)">{{task.Title}}</ion-label>
+      <div class="item-note" item-right (click)="editTask(task)">
+        {{task.DueDate}}
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="showCompleted = !showCompleted" >
+      <span *ngIf="!showCompleted">{{'Show Completed Tasks'}}</span>
+      <span *ngIf="showCompleted">{{ 'Completed Tasks' }}</span>
+    </button>
+  </div>
+
+  <ion-list id="completedTasks" *ngIf="showCompleted" >
+    <ion-item *ngFor="let ctask of completedTasks | async" [ngClass]="{'completed': ctask.Completed}">
+      <ion-checkbox mode="ios" [ngModel]="ctask.Completed" (ionChange)="toggleComplete(ctask)" ></ion-checkbox>
+      <ion-label (click)="editTask(ctask)">{{ctask.Title}}</ion-label>
+      <div class="item-note" item-right (click)="editTask(ctask)">
+        {{ctask.DueDate}}
+      </div>
     </ion-item>
   </ion-list>
 
