@@ -48,7 +48,7 @@ export class TasksPage {
         orderByChild: 'Completed',
         equalTo: true
       }
-    }).map(tasks => tasks.sort(this.orderByDueDate)) as FirebaseListObservable<any>;
+    }).map(tasks => tasks.sort(this.orderByCompletedDate)) as FirebaseListObservable<any>;
   }
 
   addNewTask() {
@@ -84,7 +84,8 @@ export class TasksPage {
   toggleComplete(task) {
     console.log(task);
     this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
-      Completed: !task.Completed
+      Completed: !task.Completed,
+      CompletedDate: new Date()
     });
     //console.log(task.Completed);
   }
@@ -101,13 +102,29 @@ export class TasksPage {
   }
 
   orderByDueDate(a, b) {
-    if (a.DueDate < b.DueDate)
-      return -1;
-    if (a.DueDate > b.DueDate)
-      return 1;
+    console.log(a.DueDate + '; ' + b.DueDate);
+    if (a.DueDate < b.DueDate) {
+      if(a.DueDate == '' || a.DueDate == null) {return 1}     
+      else{return -1}
+    }
+      
+    if (a.DueDate > b.DueDate) {
+      if(b.DueDate == '' || a.DueDate == null) {return -1}
+      else {return 1 }
+    }
     return 0;
   }
 
+  orderByCompletedDate(a, b) {
 
+    let aDate = new Date(a.CompletedDate);
+    let bDate = new Date(b.CompletedDate)
+    console.log(aDate);
+    if ( aDate < bDate)
+      return 1;
+    if (aDate > bDate)
+      return -1;
+    return 0;
+  }
 
 }

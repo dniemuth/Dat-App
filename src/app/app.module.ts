@@ -13,6 +13,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { TasksPage } from '../pages/tasks/tasks';
 import { ConversationsPage } from '../pages/conversations/conversations';
 import { TaskModalPage } from '../pages/task-modal/task-modal';
+import { ClientsPage } from '../pages/clients/clients';
+import { ClientModalPage } from '../pages/client-modal/client-modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +43,9 @@ export const firebaseConfig = {
     SignupPage,
     TasksPage,
     ConversationsPage,
-    TaskModalPage
+    TaskModalPage,
+    ClientsPage,
+    ClientModalPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ export const firebaseConfig = {
     SignupPage,
     TasksPage,
     ConversationsPage,
-    TaskModalPage
+    TaskModalPage,
+    ClientsPage,
+    ClientModalPage
   ],
   providers: [
     StatusBar,

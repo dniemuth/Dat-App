@@ -1,6 +1,6 @@
 {
   "name": "dat-app",
-  "app_id": "",
+  "app_id": "8de922af",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

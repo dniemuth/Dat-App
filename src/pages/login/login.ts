@@ -34,12 +34,11 @@ export class LoginPage {
     console.log('view is about to load');
     this.fauth.auth.onAuthStateChanged((user) => {
       if(user) {
-        console.log(user);
         this.navCtrl.setRoot(TabsPage);
       } else {
         console.log('no user');
       }
-    })
+    });
   }
 
   ionViewDidLoad() {
