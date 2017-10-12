@@ -19,6 +19,7 @@ export class ClientModalPage {
   address = this.navParams.get('Address') || '';
   notes = this.navParams.get('Notes') || '';
   date = this.navParams.get('Date') || '';
+  lender = this.navParams.get('Lender') || '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
   }
@@ -32,7 +33,8 @@ export class ClientModalPage {
       'address': this.address,
       'name': this.name,
       'notes': this.notes,
-      'date': this.date
+      'date': this.date,
+      'lender': this.lender
     } 
     this.viewCtrl.dismiss(obj);
   }
