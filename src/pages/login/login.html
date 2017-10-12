@@ -30,6 +30,11 @@
       <div padding>
         <button ion-button color="primary" block (click)="doLogin()" >{{'Login'}}</button>
       </div>
+
+      <div padding class="login-error" *ngIf = "loginError">
+        <p>Your email or password is incorrect.</p>
+      </div>
+
       <div padding>
         <p class="createAccount" (click)="createAccount()">{{'Create New Account'}}</p>
       </div>

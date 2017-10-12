@@ -73,12 +73,20 @@ export class TasksPage {
     taskModal.present();
 
     taskModal.onDidDismiss(data => {
-      this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
-        DueDate: data.date,
-        Title: data.title,
-        Notes: data.notes
-      });
+      if(data == null) {
+        this.deleteTask(task)
+      } else {
+        this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
+          DueDate: data.date,
+          Title: data.title,
+          Notes: data.notes
+        });
+      }
     });
+  }
+
+  deleteTask(task) {
+    this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).remove();
   }
 
   toggleComplete(task) {
