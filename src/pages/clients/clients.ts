@@ -65,7 +65,8 @@ export class ClientsPage {
         Address: data.address,
         Name: data.name,
         Notes: data.notes,
-        Date: data.date
+        Date: data.date,
+        Lender: data.lender
       });
     });
   }

@@ -15,6 +15,7 @@ import { ConversationsPage } from '../pages/conversations/conversations';
 import { TaskModalPage } from '../pages/task-modal/task-modal';
 import { ClientsPage } from '../pages/clients/clients';
 import { ClientModalPage } from '../pages/client-modal/client-modal';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,7 +46,8 @@ export const firebaseConfig = {
     ConversationsPage,
     TaskModalPage,
     ClientsPage,
-    ClientModalPage
+    ClientModalPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ export const firebaseConfig = {
     ConversationsPage,
     TaskModalPage,
     ClientsPage,
-    ClientModalPage
+    ClientModalPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
