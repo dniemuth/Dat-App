@@ -14,3 +14,61 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.toolbar-background-md{
+  background-color: color($colors, primary);
+  color: white;
+}
+.toolbar-title-md {
+  color: white;
+}
+
+.menuNavBtn {
+  background-color: color($colors, primary);
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0px;
+};
+
+#navLogo {
+  height: 40px;
+  width: "auto";
+  padding-left: 50px;
+  padding-top: 10px;
+};
+
+.divEr {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 200px;
+};
+
+.divEr.menuLogoHorz {
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-between;
+};
+
+.menuSpacer {
+  width: 50px;
+};
+
+.menuLogo {
+  // padding: 60px;
+  height: 100%;
+  // width: 50%;
+  // padding-top: 20px;
+  flex: 1;
+};
+
+.button-inner {
+  color: white;
+};
+
+.menu-inner > .content {
+  background-color: color($colors, primary);
+  color: white;
+}
