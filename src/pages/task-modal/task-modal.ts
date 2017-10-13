@@ -35,4 +35,8 @@ export class TaskModalPage {
     this.viewCtrl.dismiss(obj);
   }
 
+  deleteTask() {
+    this.viewCtrl.dismiss(null);
+  }
+
 }

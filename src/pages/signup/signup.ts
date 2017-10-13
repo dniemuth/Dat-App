@@ -26,6 +26,8 @@ export class SignupPage {
     email: 'test@example.com',
     password: 'password'
   }
+  signupError = false;
+  errorMessage = "There was an issue";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fauth: AngularFireAuth, private fdb: AngularFireDatabase, private keyboard: Keyboard) {
   }
@@ -41,6 +43,9 @@ export class SignupPage {
       this.writeUserData(this.fauth.auth.currentUser.uid, this.account.name, this.account.email);
     }).then(() => {
       this.navCtrl.setRoot(TabsPage);
+    }).catch(error => {
+      this.signupError = true;
+      this.errorMessage = error.message;
     });
   }
 

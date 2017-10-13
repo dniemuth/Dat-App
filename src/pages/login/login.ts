@@ -26,6 +26,7 @@ export class LoginPage {
     email: '',
     password: ''
   }
+  loginError = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fauth: AngularFireAuth, private fdb: AngularFireDatabase, private keyboard: Keyboard) {
   }
@@ -50,6 +51,9 @@ export class LoginPage {
     this.keyboard.close();
     this.fauth.auth.signInWithEmailAndPassword(this.account.email, this.account.password).then(()=> {
       this.navCtrl.setRoot(TabsPage);
+    }).catch(error => {
+      this.loginError = true;
+      console.log(error);
     });
   }
 

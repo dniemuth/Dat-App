@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label floating>{{ 'Due Date' }}</ion-label>
+      <ion-label>{{ 'Due Date' }}</ion-label>
       <ion-input type="date" [(ngModel)]="date" name="date"></ion-input>
     </ion-item>
     <ion-item>
@@ -29,3 +29,11 @@
   </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button class="taskDelete" (click)="deleteTask(this)"><ion-icon name="ios-trash"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
