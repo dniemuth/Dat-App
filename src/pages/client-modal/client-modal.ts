@@ -39,4 +39,8 @@ export class ClientModalPage {
     this.viewCtrl.dismiss(obj);
   }
 
+  deleteClient(client) {
+    this.viewCtrl.dismiss(null);
+  }
+
 }

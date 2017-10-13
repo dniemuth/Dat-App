@@ -7,9 +7,10 @@
 <ion-header>
   
     <ion-navbar>
-      <ion-buttons item-left>
+      <ion-buttons>
         <button ion-button class="clientClose" (click)="closeModal()"><ion-icon name="arrow-back"></ion-icon></button>
       </ion-buttons>
+      
       <ion-title><ion-textarea type="text" [(ngModel)]="name" >{{name}}</ion-textarea></ion-title>    
     </ion-navbar>
   
@@ -27,14 +28,22 @@
         <ion-datetime displayFormat="MMM DD, YYYY h:mm A" [(ngModel)]="date" name="date"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label floating> {{ 'Notes' }}  </ion-label> -->
+        <ion-label floating> {{ 'Notes' }}  </ion-label>
         <ion-textarea type="text" [(ngModel)]="notes" name="notes"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label floating> {{ 'Lender' }}  </ion-label> -->
+        <ion-label floating> {{ 'Lender' }}  </ion-label>
         <ion-textarea type="text" [(ngModel)]="lender" name="lender"></ion-textarea>
       </ion-item>
       
     </ion-list>
-  
+
   </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons end>
+        <button ion-button class="clientDelete" (click)="deleteClient(this)"><ion-icon name="ios-trash"></ion-icon></button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

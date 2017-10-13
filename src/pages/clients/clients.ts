@@ -61,14 +61,22 @@ export class ClientsPage {
     clientModal.present();
 
     clientModal.onDidDismiss(data => {
-      this.fdb.database.ref('clients/' + this.fauth.auth.currentUser.uid + '/' + client.$key).update({
-        Address: data.address,
-        Name: data.name,
-        Notes: data.notes,
-        Date: data.date,
-        Lender: data.lender
-      });
+      if(data == null) {
+        this.deleteClient(client);
+      } else {
+        this.fdb.database.ref('clients/' + this.fauth.auth.currentUser.uid + '/' + client.$key).update({
+          Address: data.address,
+          Name: data.name,
+          Notes: data.notes,
+          Date: data.date,
+          Lender: data.lender
+        });
+      }
     });
+  }
+
+  deleteClient(client) {
+    this.fdb.database.ref('clients/'+this.fauth.auth.currentUser.uid + '/' + client.$key).remove();
   }
 
 }
