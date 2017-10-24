@@ -1,5 +1,8 @@
 page-client-modal {
-
+    ion-segment.client-type {
+        float: right;
+        width: 120px;
+    }
 }
 .picker-md .picker-col {
     padding: 0px !important;

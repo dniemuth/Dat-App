@@ -10,8 +10,16 @@
       <ion-buttons>
         <button ion-button class="clientClose" (click)="closeModal()"><ion-icon name="arrow-back"></ion-icon></button>
       </ion-buttons>
+        <ion-segment class="client-type" [(ngModel)]="icons" color="primary">
+          <ion-segment-button value="Buyer">
+            Buyer
+          </ion-segment-button>
+          <ion-segment-button value="Seller">
+            Seller
+          </ion-segment-button>
+        </ion-segment>  
       
-      <ion-title><ion-textarea type="text" [(ngModel)]="name" >{{name}}</ion-textarea></ion-title>    
+      <ion-title><ion-textarea type="text" [(ngModel)]="name" >{{name}}</ion-textarea></ion-title>
     </ion-navbar>
   
   </ion-header>
