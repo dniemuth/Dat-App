@@ -1,5 +1,11 @@
 page-client-modal {
-
+    ion-segment.client-type {
+        float: right;
+        width: 120px;
+    }
+    button.clientDelete {
+        font-size: 22px;
+    }
 }
 .picker-md .picker-col {
     padding: 0px !important;

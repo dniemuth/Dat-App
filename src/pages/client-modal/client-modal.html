@@ -10,33 +10,35 @@
       <ion-buttons>
         <button ion-button class="clientClose" (click)="closeModal()"><ion-icon name="arrow-back"></ion-icon></button>
       </ion-buttons>
+        <ion-segment class="client-type" [(ngModel)]="clientType" color="primary">
+          <ion-segment-button value="Buyer">
+            Buyer
+          </ion-segment-button>
+          <ion-segment-button value="Seller">
+            Seller
+          </ion-segment-button>
+        </ion-segment>  
       
-      <ion-title><ion-textarea type="text" [(ngModel)]="name" >{{name}}</ion-textarea></ion-title>    
+      <ion-title><ion-textarea type="text" [(ngModel)]="name" >{{name}}</ion-textarea></ion-title>
     </ion-navbar>
   
   </ion-header>
   
   
   <ion-content padding>
-    <ion-list>
-      <ion-item>
-        <ion-label floating>{{ 'Address' }}</ion-label>
-        <ion-input type="text" [(ngModel)]="address" name="address"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{ 'Closing' }}</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" [(ngModel)]="date" name="date"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label floating> {{ 'Notes' }}  </ion-label>
-        <ion-textarea type="text" [(ngModel)]="notes" name="notes"></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label floating> {{ 'Lender' }}  </ion-label>
-        <ion-textarea type="text" [(ngModel)]="lender" name="lender"></ion-textarea>
-      </ion-item>
-      
-    </ion-list>
+    <ion-card>
+      <ion-item primary>
+          <ion-label floating>{{ 'Address' }}</ion-label>
+          <ion-input type="text" [(ngModel)]="address" name="address"></ion-input>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-list>
+        <ion-item (click)="clientInfo('dates')">
+          <ion-label>Dates</ion-label>
+        </ion-item>     
+      </ion-list>
+    </ion-card>
 
   </ion-content>
 

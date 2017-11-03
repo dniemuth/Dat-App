@@ -16,6 +16,7 @@ import { TaskModalPage } from '../pages/task-modal/task-modal';
 import { ClientsPage } from '../pages/clients/clients';
 import { ClientModalPage } from '../pages/client-modal/client-modal';
 import { ProfilePage } from '../pages/profile/profile';
+import { ClientInfoModalPage } from '../pages/client-info-modal/client-info-modal'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,7 +48,8 @@ export const firebaseConfig = {
     TaskModalPage,
     ClientsPage,
     ClientModalPage,
-    ProfilePage
+    ProfilePage,
+    ClientInfoModalPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ export const firebaseConfig = {
     TaskModalPage,
     ClientsPage,
     ClientModalPage,
-    ProfilePage
+    ProfilePage,
+    ClientInfoModalPage
   ],
   providers: [
     StatusBar,

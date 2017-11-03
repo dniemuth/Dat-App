@@ -6,7 +6,9 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { TaskModalPage } from '../task-modal/task-modal';
 
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+
+import * as firebase from 'firebase';
 
 /**
  * Generated class for the TasksPage page.
@@ -60,7 +62,11 @@ export class TasksPage {
         Title: this.taskTitle,
         Completed: false,
         Notes: '',
-        DueDate: ''
+        DueDate: '',
+        Created: firebase.database.ServerValue.TIMESTAMP,
+        Author: this.fauth.auth.currentUser.uid,
+        Modified: firebase.database.ServerValue.TIMESTAMP,
+        Editor: this.fauth.auth.currentUser.uid
       });
       this.addNew = false;
       this.taskTitle = '';
@@ -79,7 +85,9 @@ export class TasksPage {
         this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
           DueDate: data.date,
           Title: data.title,
-          Notes: data.notes
+          Notes: data.notes,
+          Modified: firebase.database.ServerValue.TIMESTAMP,
+          Editor: this.fauth.auth.currentUser.uid
         });
       }
     });
@@ -93,7 +101,7 @@ export class TasksPage {
     console.log(task);
     this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
       Completed: !task.Completed,
-      CompletedDate: new Date()
+      CompletedDate: firebase.database.ServerValue.TIMESTAMP
     });
     //console.log(task.Completed);
   }

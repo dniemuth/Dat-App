@@ -31,4 +31,30 @@ page-clients {
         display: none;
     }
 
+    div.clientWrapper {
+        float: left;
+        width: 100%;
+        padding: 18px 0;
+        border-bottom: 1px solid gray;
+    }
+    div.clientTop {
+        float: left;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    div.clientTop * {
+        margin: 0;
+    }
+    h3.clientName {
+        font-size: 18px;
+        float:left;
+    }
+    p.clientType {
+        float:right;
+    }
+    p.clientDetails {
+        color: gray;
+        margin: 0;
+    }
+
 }
