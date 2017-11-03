@@ -8,6 +8,8 @@ import { ClientModalPage } from '../client-modal/client-modal';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
+import * as firebase from 'firebase';
+
 /**
  * Generated class for the ClientsPage page.
  *
@@ -25,7 +27,8 @@ export class ClientsPage {
   clients: FirebaseListObservable<any>;
   addNew = false;
   clientName = '';
-  showCompleted = false;
+  clientType = '';
+  propertyAddress = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth) {
   }
@@ -34,7 +37,7 @@ export class ClientsPage {
     console.log('ionViewDidLoad TasksPage');
 
     //list of clients
-    this.clients = this.fdb.list('clients/' + this.fauth.auth.currentUser.uid, {
+    this.clients = this.fdb.list('clients/common/' + this.fauth.auth.currentUser.uid, {
       query: {
         orderByChild: 'Name',
       }
@@ -47,8 +50,12 @@ export class ClientsPage {
     //   console.log(snapshot.val());
     // });
     if(this.clientName) {
-      this.fdb.database.ref('clients/' + this.fauth.auth.currentUser.uid).push({
+      this.fdb.database.ref('clients/common/' + this.fauth.auth.currentUser.uid).push({
         Name: this.clientName,
+        Created: firebase.database.ServerValue.TIMESTAMP,
+        Author: this.fauth.auth.currentUser.uid,
+        Modified: firebase.database.ServerValue.TIMESTAMP,
+        Editor: this.fauth.auth.currentUser.uid
       });
       this.addNew = false;
       this.clientName = '';
@@ -64,19 +71,19 @@ export class ClientsPage {
       if(data == null) {
         this.deleteClient(client);
       } else {
-        this.fdb.database.ref('clients/' + this.fauth.auth.currentUser.uid + '/' + client.$key).update({
+        this.fdb.database.ref('clients/common/' + this.fauth.auth.currentUser.uid + '/' + client.$key).update({
           Address: data.address,
           Name: data.name,
-          Notes: data.notes,
-          Date: data.date,
-          Lender: data.lender
+          ClientType: data.clientType,
+          Modified: firebase.database.ServerValue.TIMESTAMP,
+          Editor: this.fauth.auth.currentUser.uid
         });
       }
     });
   }
 
   deleteClient(client) {
-    this.fdb.database.ref('clients/'+this.fauth.auth.currentUser.uid + '/' + client.$key).remove();
+    this.fdb.database.ref('clients/common/'+this.fauth.auth.currentUser.uid + '/' + client.$key).remove();
   }
 
 }

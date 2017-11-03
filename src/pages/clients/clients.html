@@ -27,9 +27,13 @@
   <ion-content padding (click)="addNew = false">
   
     <ion-list>
-      <ion-item *ngFor="let client of clients | async">
-        <ion-label (click)="editClient(client)">{{client.Name}}</ion-label>
-      </ion-item>
+      <div class="clientWrapper" *ngFor="let client of clients | async" (click)="editClient(client)">
+        <div class="clientTop">
+          <h3 class="clientName">{{client.Name}}</h3>
+          <p class="clientType">{{client.ClientType}}</p>
+        </div>
+        <p class="clientDetails">{{client.Address}}</p>
+      </div>
     </ion-list>
   
   </ion-content>
