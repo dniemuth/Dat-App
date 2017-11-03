@@ -31,6 +31,10 @@ export class ClientModalPage {
     console.log('ionViewDidLoad TaskModalPage');
   }
 
+  addSection() {
+    console.log('adding new section');
+  }
+
   closeModal() {
     let obj = {
       'address': this.address,

@@ -6,6 +6,11 @@ page-client-modal {
     button.clientDelete {
         font-size: 22px;
     }
+    ion-fab-list button {
+        width: 100px;
+        padding: 14px 0;
+        margin-left: -52px;
+    }
 }
 .picker-md .picker-col {
     padding: 0px !important;

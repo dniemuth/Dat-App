@@ -26,6 +26,12 @@
   
   
   <ion-content padding>
+    <ion-fab top right edge #fab>
+      <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list side="bottom">
+        <button (click)="addSection()">Add Section</button>
+      </ion-fab-list>
+    </ion-fab>
     <ion-card>
       <ion-item primary>
           <ion-label floating>{{ 'Address' }}</ion-label>

@@ -15,11 +15,11 @@
 
 </ion-header>
 
-<button *ngIf="!addNew" ion-button round class="addButton" (click)="addNew = true"><ion-icon name="add"></ion-icon></button>
+<button *ngIf="!addNew" ion-button round class="addButton" (click)="createNewTask()"><ion-icon name="add"></ion-icon></button>
 
 <div class="newTaskField" *ngIf="addNew">
   <ion-item>
-    <ion-input name="addTaskField" placeholder="New Task" [(ngModel)]="taskTitle"></ion-input>
+    <ion-input #task name="addTaskField" placeholder="New Task" [(ngModel)]="taskTitle"></ion-input>
     <button class="submit" (click)="addNewTask()" item-right><ion-icon class="taskSubmit" name="ios-arrow-dropup-outline"></ion-icon></button>
   </ion-item>
 </div>

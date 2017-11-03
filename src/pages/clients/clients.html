@@ -15,11 +15,11 @@
   
   </ion-header>
   
-  <button *ngIf="!addNew" ion-button round class="addButton" (click)="addNew = true"><ion-icon name="add"></ion-icon></button>
+  <button *ngIf="!addNew" ion-button round class="addButton" (click)="createNewClient()"><ion-icon name="add"></ion-icon></button>
   
   <div class="newClientField" *ngIf="addNew">
     <ion-item>
-      <ion-input name="addClientField" placeholder="New Client" [(ngModel)]="clientName"></ion-input>
+      <ion-input #client name="addClientField" placeholder="New Client" [(ngModel)]="clientName"></ion-input>
       <button class="submit" (click)="addNewClient()" item-right><ion-icon class="clientSubmit" name="ios-arrow-dropup-outline"></ion-icon></button>
     </ion-item>
   </div>

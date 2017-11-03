@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -24,17 +25,23 @@ import * as firebase from 'firebase';
 })
 export class TasksPage {
 
+  @ViewChild('task') task;
   tasks: FirebaseListObservable<any>;
   completedTasks: FirebaseListObservable<any>;
   addNew = false;
   taskTitle = '';
   showCompleted = false;
+  isApp = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth, private keyboard: Keyboard, private platform: Platform) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TasksPage');
+
+    if(this.platform.is('core') || this.platform.is('mobileweb')) {
+      this.isApp = false;
+    }
 
     //list of in progress tasks
     this.tasks = this.fdb.list('tasks/' + this.fauth.auth.currentUser.uid, {
@@ -51,6 +58,17 @@ export class TasksPage {
         equalTo: true
       }
     }).map(tasks => tasks.sort(this.orderByCompletedDate)) as FirebaseListObservable<any>;
+  }
+
+  createNewTask() {
+    this.addNew = true;
+    setTimeout(() => {
+      console.log(this.task);
+      this.task.setFocus();
+      if(this.isApp) {
+        this.keyboard.show();
+      }
+    }, 150);
   }
 
   addNewTask() {
