@@ -29,7 +29,7 @@
     <ion-fab top right edge #fab>
       <button ion-fab mini><ion-icon name="add"></ion-icon></button>
       <ion-fab-list side="bottom">
-        <button (click)="addSection()">Add Section</button>
+        <button (click)="addSection($event, fab)">Add Section</button>
       </ion-fab-list>
     </ion-fab>
     <ion-card>
@@ -38,12 +38,10 @@
           <ion-input type="text" [(ngModel)]="address" name="address"></ion-input>
         </ion-item>
     </ion-card>
-    <ion-card>
-      <ion-list>
-        <ion-item (click)="clientInfo('dates')">
-          <ion-label>Dates</ion-label>
+    <ion-card *ngFor="let section of clientDetails | async" (click)="clientInfo(section.$key)">
+        <ion-item >
+          <ion-label>{{section.secTitle}}</ion-label>
         </ion-item>     
-      </ion-list>
     </ion-card>
 
   </ion-content>

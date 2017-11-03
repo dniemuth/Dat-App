@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, AlertController, FabContainer } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -20,19 +20,57 @@ import { ClientInfoModalPage } from '../client-info-modal/client-info-modal';
 })
 export class ClientModalPage {
 
+  clientDetails: FirebaseListObservable<any>;
   name = this.navParams.get('Name');
   address = this.navParams.get('Address') || '';
   clientType = this.navParams.get('ClientType') || '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private modal: ModalController, private fdb: AngularFireDatabase, private fauth: AngularFireAuth, private alert: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TaskModalPage');
+
+     //list of client detail sections
+     this.clientDetails = this.fdb.list('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key'), {
+      query: {
+        orderByChild: 'SecTitle',
+      }
+    });
+
   }
 
-  addSection() {
-    console.log('adding new section');
+  addSection(event, fab: FabContainer) {
+    fab.close();
+    let prompt = this.alert.create({
+      title: 'New Section',
+      message: 'Enter a name for this new section',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Section Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('saved clicked');
+            console.log(data);
+            this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key')).push({
+              secTitle: data.title
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   closeModal() {
@@ -46,14 +84,14 @@ export class ClientModalPage {
 
   clientInfo(infoType) {
     //console.log(this);
-    this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/dates').once('value').then(data => {
+    this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + infoType).once('value').then(data => {
       console.log(data.val());
       let info = {info: data.val()}
       let clientInfoModal = this.modal.create(ClientInfoModalPage, info);
       clientInfoModal.present();
 
       clientInfoModal.onDidDismiss(data => {
-        this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/dates').update(
+        this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + infoType).update(
           data
         );
       });
