@@ -71,4 +71,29 @@
 .menu-inner > .content {
   background-color: color($colors, primary);
   color: white;
+};
+
+.client-type {
+  background-color: white;
+  border-radius: 5px;
+};
+
+.segment-button.segment-activated{
+  background-color: color($colors, secondary);
+  border-radius: 5px;
+  color: white !important;
+};
+
+.fab.fab-md{
+  background-color: color($colors, primary);
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;  
+}
+
+.clientType {
+  background-color: color($colors, secondary);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
