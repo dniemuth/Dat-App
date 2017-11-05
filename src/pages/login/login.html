@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>
+      <div id="navTitleContainer">
+        <span id="navTitle">Login</span>
+        <img src="./assets/images/navLogo.png" id="navLogo" alt="ZenEstate" />
+      </div>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,6 +21,10 @@
 <ion-content padding>
   <div>
     <ion-list>
+
+      <ion-item>
+          <div class="loginLogo"><img src="./assets/images/ZenEstateAlt.png" alt="ZenEstateAlt" /></div>
+      </ion-item>
 
       <ion-item>
         <ion-label fixed>{{'Email'}}</ion-label>
@@ -36,7 +45,7 @@
       </div>
 
       <div padding>
-        <p class="createAccount" (click)="createAccount()">{{'Create New Account'}}</p>
+        <p class="createAccount" (click)="createAccount()" align="center">{{'Create New Account'}}</p>
       </div>
 
     </ion-list>
