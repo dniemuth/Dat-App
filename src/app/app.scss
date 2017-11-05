@@ -32,11 +32,15 @@
   border: 0px;
 };
 
+#navTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+};
+
 #navLogo {
-  height: 40px;
+  height: 25px;
   width: "auto";
-  padding-left: 50px;
-  padding-top: 10px;
 };
 
 .divEr {
@@ -96,4 +100,14 @@
   color: white;
   padding: 5px;
   border-radius: 5px;
-}
+};
+
+.item-md {
+  padding-left: 10px;
+};
+
+#addSectionLabel {
+  background-color: color($colors, secondary);
+  color: color($colors, primary);
+  border-radius: 5px;
+};
