@@ -32,11 +32,15 @@
   border: 0px;
 };
 
+#navTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+};
+
 #navLogo {
-  height: 40px;
+  height: 25px;
   width: "auto";
-  padding-left: 50px;
-  padding-top: 10px;
 };
 
 .divEr {
@@ -64,6 +68,14 @@
   flex: 1;
 };
 
+.loginLogo {
+  // padding: 60px;
+  height: 50%;
+  // width: 50%;
+  // padding-top: 20px;
+  flex: 1;
+};
+
 .button-inner {
   color: white;
 };
@@ -71,4 +83,63 @@
 .menu-inner > .content {
   background-color: color($colors, primary);
   color: white;
+};
+
+.client-type {
+  background-color: white;
+  border-radius: 5px;
+};
+
+.segment-button.segment-activated{
+  background-color: color($colors, secondary);
+  border-radius: 5px;
+  color: white !important;
+};
+
+.fab.fab-md{
+  background-color: color($colors, primary);
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;  
 }
+
+.clientType {
+  background-color: color($colors, secondary);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+};
+
+.item-md {
+  padding-left: 10px;
+};
+
+#addSectionLabel {
+  background-color: color($colors, secondary);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: color($colors, primary);
+  box-shadow: 0px 4px 10px #e3e3e3;
+};
+
+.alert-message {
+  margin-top: 15px;
+};
+
+.alert-head {
+  background-color: color($colors, secondary);
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: color($colors, primary);
+};
+
+.alert-title {
+  color: color($colors, primary);
+};
+
+.alert-button-default-md {
+  background-color: color($colors, primary) !important;
+};

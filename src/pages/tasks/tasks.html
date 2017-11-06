@@ -10,7 +10,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Tasks</ion-title>
+    <ion-title>
+      <div id="navTitleContainer">
+        <span id="navTitle">Tasks</span>
+        <img src="./assets/images/navLogo.png" id="navLogo" alt="ZenEstate" />
+      </div>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -37,9 +42,9 @@
   </ion-list>
 
   <div padding>
-    <button ion-button color="primary" block (click)="showCompleted = !showCompleted" >
-      <span *ngIf="!showCompleted">{{'Show Completed Tasks'}}</span>
-      <span *ngIf="showCompleted">{{ 'Completed Tasks' }}</span>
+    <button ion-button color="primary" block (click)="showCompleted = !showCompleted" id="completedTasksBTN">
+      <span *ngIf="!showCompleted" id="showCompletedText">{{'Show Completed Tasks'}}</span>
+      <span *ngIf="showCompleted" id="completedText">{{ 'Completed Tasks' }}</span>
     </button>
   </div>
 

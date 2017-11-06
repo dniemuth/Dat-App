@@ -24,12 +24,11 @@
   
   </ion-header>
   
-  
   <ion-content padding>
     <ion-fab top right edge #fab>
       <button ion-fab mini><ion-icon name="add"></ion-icon></button>
       <ion-fab-list side="bottom">
-        <button (click)="addSection($event, fab)">Add Section</button>
+        <button (click)="addSection($event, fab)" id="addSectionLabel">Add Section</button>
       </ion-fab-list>
     </ion-fab>
     <ion-card>
