@@ -82,16 +82,16 @@ export class ClientModalPage {
     this.viewCtrl.dismiss(obj);
   }
 
-  clientInfo(infoType) {
+  clientInfo(sectionId) {
     //console.log(this);
-    this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + infoType).once('value').then(data => {
-      console.log(data.val());
-      let info = {info: data.val()}
+    this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + sectionId).once('value').then(data => {
+      console.log(data);
+      let info = {info: data.val(), clientKey:this.navParams.get('$key'), sectionKey: sectionId}
       let clientInfoModal = this.modal.create(ClientInfoModalPage, info);
       clientInfoModal.present();
 
       clientInfoModal.onDidDismiss(data => {
-        this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + infoType).update(
+        this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + sectionId).update(
           data
         );
       });
