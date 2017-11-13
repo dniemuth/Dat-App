@@ -25,11 +25,15 @@
 }
 
 .menuNavBtn {
-  background-color: color($colors, primary);
-  color: white;
+  background-color: color($colors, danger);
+  color: color($colors, secondary);
   text-transform: uppercase;
   text-align: center;
   border: 0px;
+};
+
+.input-wrapper {
+  border: 20px !important;
 };
 
 #navTitleContainer {
@@ -53,6 +57,7 @@
 .divEr.menuLogoHorz {
   margin-top: 75px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 };
 
@@ -62,7 +67,7 @@
 
 .menuLogo {
   // padding: 60px;
-  height: 100%;
+  width: 100%;
   // width: 50%;
   // padding-top: 20px;
   flex: 1;
@@ -81,7 +86,7 @@
 };
 
 .menu-inner > .content {
-  background-color: color($colors, primary);
+  background-color: color($colors, danger);
   color: white;
 };
 
