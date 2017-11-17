@@ -87,7 +87,7 @@ export class ClientsPage {
 
     clientModal.onDidDismiss(data => {
       console.log(data);
-      if(data === null) {
+      if(data === 'delete') {
         this.deleteClient(client);
       } else {
         this.fdb.database.ref('clients/common/' + this.fauth.auth.currentUser.uid + '/' + client.$key).update({

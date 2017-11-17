@@ -79,11 +79,58 @@ export class ClientInfoModalPage {
     this.viewCtrl.dismiss(this.data);
   }
 
-  checkData() {
-    console.log(this.data);
+  checkData(section) {
+    console.log(section);
     // this.fdb.database.ref(this.ref).on('value', (data) => {
     //   console.log(data.val());
     // });
+  }
+
+  deleteSection(section) {
+    let alert = this.alert.create({
+      title: 'Confirm deletion',
+      message: 'Are you sure you would like to delete this section?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.viewCtrl.dismiss('delete');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  deleteField(field) {
+    console.log(field);
+    let alert = this.alert.create({
+      title: 'Confirm deletion',
+      message: 'Are you sure you would like to delete this section?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.fdb.database.ref(this.ref + '/fields/' + field).remove();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
