@@ -6,16 +6,18 @@
     </ion-header>
 
     <ion-content>
-        <div class="menuLogoHorz divEr">
-            <!-- <div class="menuSpacer">&nbsp;</div> -->
-            <div class="menuLogo"><img src="./assets/images/menuLogo.png" alt="ZenEstate" /></div>
-            <!-- <div class="menuSpacer">&nbsp;</div> -->
+        <div class="menuTopSpace">&nbsp;</div>
+        <div class="divEr">
+            <div class="menuSpacer">&nbsp;</div>
+            <div class="menuLogo"><img src="./assets/images/bebopTransparent.png" alt="Bebop" /></div>
+            <div class="menuSpacer">&nbsp;</div>
+        </div>
+        <div class="menuTopSpace">&nbsp;</div>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="menuNavBtn">
                 {{p.title}}
             </button>
         </ion-list>
-        </div>
 
     </ion-content>
 </ion-menu>
