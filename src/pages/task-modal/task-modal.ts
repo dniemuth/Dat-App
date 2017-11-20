@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the TaskModalPage page.
@@ -21,7 +21,7 @@ export class TaskModalPage {
   created = new Date(this.navParams.get('Created')) || null;
   createdDisplay = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private alert: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -42,8 +42,29 @@ export class TaskModalPage {
   }
 
   deleteTask() {
-    this.viewCtrl.dismiss(null);
+    let alert = this.alert.create({
+      title: 'Confirm deletion',
+      message: 'Are you sure you would like to delete this task?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Yes clicked');
+            this.viewCtrl.dismiss('delete');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
+
 
   convertDate() {
     console.log('converting date');

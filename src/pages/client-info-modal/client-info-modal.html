@@ -20,16 +20,22 @@
   <ion-fab top right edge #fab>
     <button ion-fab mini><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="bottom">
-      <button (click)="addField($event, fab)" id="addSectionLabel">Add Field</button>
+      <button (click)="createField($event, fab)" id="addSectionLabel">Add Field</button>
     </ion-fab-list>
   </ion-fab>
 
-  <ion-list *ngFor="let field of fields | async">
-    <ion-item id="{{field.$key}}">
-      <ion-label floating>{{field.fieldTitle}}</ion-label>
-      <!-- <ion-input type="text" [(ngModel)]="field.value"></ion-input> -->
-      <ion-input type="text" [(ngModel)]="data.fields[field.$key].value"></ion-input>
-    </ion-item>
+  <ion-list reorder="true" (ionItemReorder)="reorderFields($event)">
+    <ion-item-sliding *ngFor="let field of fields | async" id="{{field.$key}}" #slideitem>
+      <ion-item>
+        <ion-label floating>{{field.fieldTitle}}</ion-label>
+        <!-- <ion-input type="text" [(ngModel)]="field.value"></ion-input> -->
+        <ion-input *ngIf="field.type !== 'textarea'" type="{{field.type}}" [(ngModel)]="data.fields[field.$key].value"></ion-input>
+        <ion-textarea *ngIf="field.type == 'textarea'" type="text" [(ngModel)]="data.fields[field.$key].value"></ion-textarea>
+      </ion-item>
+      <ion-item-options>
+          <button ion-button expandable (click)="deleteField(field.$key)">Delete</button>
+        </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
 </ion-content>
@@ -37,7 +43,7 @@
 <ion-footer>
     <ion-toolbar>
       <ion-buttons end>
-        <button ion-button class="clientDelete" (click)="checkData()"><ion-icon name="ios-trash"></ion-icon></button>
+        <button ion-button class="clientDelete" (click)="deleteSection(this)"><ion-icon name="ios-trash"></ion-icon></button>
       </ion-buttons>
     </ion-toolbar>
   </ion-footer>

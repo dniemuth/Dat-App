@@ -91,15 +91,43 @@ export class ClientModalPage {
       clientInfoModal.present();
 
       clientInfoModal.onDidDismiss(data => {
-        this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + sectionId).update(
-          data
-        );
+        if(data === 'delete') {
+          this.deleteSection(sectionId);
+        } else {
+          this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + sectionId).update(
+            data
+          );
+        }
       });
     });
   }
 
   deleteClient(client) {
-    this.viewCtrl.dismiss(null);
+    let alert = this.alert.create({
+      title: 'Confirm deletion',
+      message: 'Are you sure you would like to delete this transaction?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Yes clicked');
+            this.viewCtrl.dismiss('delete');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  deleteSection(sectionId) {
+    this.fdb.database.ref('clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('$key') + '/' + sectionId).remove();
   }
 
 }

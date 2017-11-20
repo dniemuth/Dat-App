@@ -97,7 +97,7 @@ export class TasksPage {
     taskModal.present();
 
     taskModal.onDidDismiss(data => {
-      if(data == null) {
+      if(data === 'delete') {
         this.deleteTask(task)
       } else {
         this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).update({
@@ -112,6 +112,7 @@ export class TasksPage {
   }
 
   deleteTask(task) {
+    
     this.fdb.database.ref('tasks/' + this.fauth.auth.currentUser.uid + '/' + task.$key).remove();
   }
 
