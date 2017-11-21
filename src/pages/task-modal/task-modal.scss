@@ -5,5 +5,49 @@ page-task-modal {
     button.taskDelete {
         font-size: 22px;
     }
-
+    ion-item#duedate ion-label {       
+        margin-bottom: 2px;
+    }
+    input[type="date"] {
+        background-color: transparent;
+        width: 100%;
+    }
+    input#duedate {
+        position: relative;
+        margin-top: 10px;
+        left: 0;
+        z-index: 2;
+        padding: 8px 8px 8px 0;
+        outline: 0;
+        border: none;
+        &:focus + label.floating, &.entered + label.floating {
+            font-size: 75%;
+            z-index: 1;
+        }
+    }
+    label.floating {
+        transition: // not padding
+            background 0.2s,
+            color 0.2s,
+            top 0.2s,
+            bottom 0.2s,
+            right 0.2s,
+            left 0.2s;
+        position: absolute;
+        color: #999;
+        padding: 8px 8px;
+    }
+    label.floating {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    input#duedate:focus + label.floating, input#duedate.entered + label.floating{
+        top: 0%;
+        margin-top: 0;
+        align-items: flex-start;
+    }
 }

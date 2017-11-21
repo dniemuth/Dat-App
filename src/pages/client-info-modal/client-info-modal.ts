@@ -108,9 +108,10 @@ export class ClientInfoModalPage {
 
   deleteField(field) {
     console.log(field);
+    console.log(this.data);
     let alert = this.alert.create({
       title: 'Confirm deletion',
-      message: 'Are you sure you would like to delete this section?',
+      message: 'Are you sure you would like to delete this field?',
       buttons: [
         {
           text: 'No',
@@ -123,6 +124,8 @@ export class ClientInfoModalPage {
           text: 'Yes',
           handler: () => {
             this.fdb.database.ref(this.ref + '/fields/' + field).remove();
+            delete this.data.fields[field];
+            console.log(this.data);          
           }
         }
       ]

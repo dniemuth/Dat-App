@@ -18,9 +18,9 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
-      <ion-label floating>{{ 'Due Date' }}</ion-label>
-      <ion-input tappable type="date" [(ngModel)]="date" name="date"></ion-input>
+    <ion-item id="duedate">
+      <input [class.entered]="date"  id="duedate" type="date" [(ngModel)]="date" name="date">
+      <label class="floating">{{ 'Due Date' }}</label>
     </ion-item>
     <ion-item>
       <ion-label floating> {{ 'Notes' }}  </ion-label>
