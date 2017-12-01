@@ -10,7 +10,7 @@
     <ion-buttons item-left>
       <button ion-button class="taskClose" (click)="closeModal()"><ion-icon name="arrow-back"></ion-icon></button>
     </ion-buttons>
-    <ion-title><ion-textarea type="text" [(ngModel)]="title" >{{title}}</ion-textarea></ion-title>    
+    <ion-title><ion-input #taskname type="text" [(ngModel)]="title" (keyup.enter)="keyup('title')">{{title}}</ion-input></ion-title>    
   </ion-navbar>
 
 </ion-header>

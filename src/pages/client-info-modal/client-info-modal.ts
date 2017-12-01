@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController, FabContainer, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, FabContainer, ModalController, Platform } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -24,7 +24,7 @@ export class ClientInfoModalPage {
   data:any = this.navParams.get('info') || {};
   ref = 'clients/details/' + this.fauth.auth.currentUser.uid + '/' + this.navParams.get('clientKey') + '/' + this.navParams.get('sectionKey');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private fauth: AngularFireAuth, private fdb: AngularFireDatabase, private alert: AlertController, private modal: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private fauth: AngularFireAuth, private fdb: AngularFireDatabase, private alert: AlertController, private modal: ModalController, private platform: Platform) {
     this.fdb.list(this.ref + '/fields', {
       query: {
         orderByChild: 'order'
@@ -34,6 +34,15 @@ export class ClientInfoModalPage {
       this.ordered = data;
       console.log(data);
     });
+
+    // platform.ready().then(() => {
+    //   // Okay, so the platform is ready and our plugins are available.
+    //   // Here you can do any higher level native things you might need
+
+    //   platform.registerBackButtonAction(() => {
+    //     console.log('android back clicked');
+    //   });
+    // });
   }
 
   ionViewDidLoad() {
@@ -132,5 +141,4 @@ export class ClientInfoModalPage {
     });
     alert.present();
   }
-
 }

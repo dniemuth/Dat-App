@@ -18,7 +18,7 @@
 
 <div class="newTaskField" *ngIf="addNew">
   <ion-item>
-    <ion-input #task name="addTaskField" placeholder="New Task" [(ngModel)]="taskTitle"></ion-input>
+    <ion-input #task name="addTaskField" placeholder="New Task" [(ngModel)]="taskTitle" (keyup.enter)="addNewTask()"></ion-input>
     <button class="submit" (click)="addNewTask()" item-right><ion-icon class="taskSubmit" name="ios-arrow-dropup-outline"></ion-icon></button>
   </ion-item>
 </div>

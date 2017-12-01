@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 
 /**
@@ -15,6 +15,7 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController } 
 })
 export class TaskModalPage {
 
+  @ViewChild('taskname') taskname;
   title = this.navParams.get('Title');
   date: Date = this.navParams.get('DueDate') || '';
   notes = this.navParams.get('Notes') || '';
@@ -22,6 +23,7 @@ export class TaskModalPage {
   createdDisplay = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private alert: AlertController) {
+    
   }
 
   ionViewDidLoad() {
@@ -82,6 +84,11 @@ export class TaskModalPage {
     } else {
       return '';
     }
+  }
+
+  keyup(field) {
+    console.log(field);
+    this.taskname.removeFocus();
   }
 
 }

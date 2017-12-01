@@ -162,4 +162,8 @@ export class TasksPage {
     return 0;
   }
 
+  handleEnter() {
+    this.addNewTask();
+  }
+
 }

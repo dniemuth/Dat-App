@@ -3,7 +3,7 @@
     <name>Bebop</name>
     <description>The Real Estate Task App</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://172.25.226.121:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -85,6 +85,9 @@
     <allow-navigation href="http://192.168.115.246:8100" />
     <allow-navigation href="http://192.168.43.107:8100" />
     <allow-navigation href="http://192.168.0.13:8100" />
+    <allow-navigation href="http://192.168.1.104:8100" />
+    <allow-navigation href="http://192.168.113.148:8100" />
+    <allow-navigation href="http://172.25.226.121:8100" />
     <engine name="android" spec="^6.3.0" />
     <engine name="ios" spec="^4.5.2" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
