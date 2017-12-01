@@ -28,6 +28,9 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+public/
+.firebaserc
+firebase.json
 
 .DS_Store
 Thumbs.db
