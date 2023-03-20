@@ -1,26 +1,30 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+**Ice Ghoul**
+*Medium undead, chaotic evil*
 
-## How to use this template
+**Armor Class:** 13
+**Hit Points:** 45 (7d8 + 14)
+**Speed:** 30 ft., climb 30 ft.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+**STR** 13 (+1)
+**DEX** 14 (+2)
+**CON** 14 (+2)
+**INT** 6 (-2)
+**WIS** 10 (+0)
+**CHA** 8 (-1)
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+**Skills:** Stealth +4
+**Damage Immunities:** Cold
+**Condition Immunities:** Exhaustion, Poisoned
+**Senses:** Darkvision 60 ft., passive Perception 10
+**Languages:** understands the languages it knew in life but can't speak
+**Challenge:** 1 (200 XP)
 
-### With the Ionic CLI:
+***Actions***
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+***Multiattack.*** The Ice Ghoul makes two attacks: one with its chilling touch and one with its bite.
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
-```
+***Chilling Touch.*** *Melee Spell Attack:* +4 to hit, reach 5 ft., one target. *Hit:* 7 (2d6) cold damage.
 
-Then, to run it, cd into `myTabs` and run:
+***Bite.*** *Melee Weapon Attack:* +3 to hit, reach 5 ft., one target. *Hit:* 6 (1d8 + 2) piercing damage. If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+***Freeze.*** The Ice Ghoul can choose a 5-foot square of ground within 30 feet of it and freeze it solid. Any creature standing in or entering that area must succeed on a DC 12 Dexterity saving throw or fall prone.
